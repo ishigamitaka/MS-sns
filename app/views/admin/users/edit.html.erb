@@ -1,0 +1,39 @@
+<h1>Edit User</h1>
+<%= form_for @user, url: user_path(@user), method: :patch do |f| %>
+  <div>
+    <%= f.label :名 %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :性 %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :ニックネーム %>
+    <%= f.text_field :nick_name %>
+  </div>
+  <div>
+    <%= f.label :住所 （都道府県のみ）%>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :年齢 %>
+    <%= f.number_field :age %>
+  </div>
+  <div>
+    <%= f.label :愛車 %>
+    <%= f.text_field :mycar %>
+  </div>
+  <div>
+    <%= f.label :よく行くサーキット %>
+    <%= f.text_field :main_circuit %>
+  </div>
+  <div>
+    <%= f.label :自由欄 %>
+    <%= f.text_area :freeprofile %>
+  </div>
+  
+  <div>
+    <%= f.submit "プロフィール更新" %>
+  </div>
+<% end %>

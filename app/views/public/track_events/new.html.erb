@@ -1,0 +1,18 @@
+<h1>イベント参加募集投稿</h1>
+
+
+<%= form_for @event do |f| %>
+<%= f.label :title,"タイトル" %>
+<%= f.text_field :title %><br>
+<%= f.label :run_category, "走行カテゴリー"%>
+<%= f.select :run_category, [["レース", "レース"], ["タイムアタック", "タイムアタック"], ["ドリフト", "ドリフト"], ["ジムカーナ", "ジムカーナ"]], include_blank: "カテゴリーを選択してください" %><br>
+<%= f.label :run_date,"走行日時" %>
+<%= f.text_field :run_date %><br>
+<%= f.label :price,"参加費" %>
+<%= f.text_field :price %>円<br>
+<%= f.label :number_people,"募集人数" %>
+<%= f.text_field :number_people %>人<br>
+<%= f.label :body,"詳細" %>
+<%= f.text_area :body %><br>
+ <%= f.submit "投稿する" %>
+ <% end %>

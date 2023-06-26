@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="text-center">パーツ詳細</h1>
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>車種</th>
+        <th>パーツ名</th>
+        <th>画像</th>
+        <th>値段</th>
+        <th>効果</th>
+        <th>レビュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to @part.user.nickname, @part.user %>
+        </td>
+        <td><%= @part.user.mycar %></td>
+        <td><%= @part.parts_name %></td>
+        <td>
+          <% if @part.parts_image.attached? %>
+            <%= image_tag @part.parts_image, size: "160x120" %>
+          <% end %>
+        </td>
+        <td><%= @part.howmuch %>円</td>
+        <td><%= @part.effect %></td>
+        <td><%= @part.review %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

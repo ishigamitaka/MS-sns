@@ -1,0 +1,43 @@
+<div class="container">
+  <h1 class="text-center">パーツレビュー</h1>
+  <div class="text-center mb-3">
+    <%= link_to "投稿する", new_part_path, class: "btn btn-primary" %>
+  </div>
+
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>車種</th>
+        <th>パーツ名</th>
+        <th>画像</th>
+        <th>値段</th>
+        <th>効果</th>
+        <th>レビュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @parts.each do |pa| %>
+        <tr>
+          <td>
+            <% if pa.user.present? %>
+              <%= link_to pa.user.nickname, part_path(pa) %>
+            <% else %>
+              削除された投稿者
+            <% end %>
+          </td>
+          <td><%= pa.user.mycar %></td>
+          <td><%= pa.parts_name %></td>
+          <td>
+            <% if pa.parts_image.attached? %>
+              <%= image_tag pa.parts_image, size: "160x120" %>
+            <% end %>
+          </td>
+          <td><%= pa.howmuch %>円</td>
+          <td><%= pa.effect %></td>
+          <td><%= pa.review %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

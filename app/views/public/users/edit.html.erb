@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= render 'public/shared/error_messages', resource: @user %>
+      <h1 class="text-center"><%= @user.nickname %>さんの編集ページ</h1>
+      <%= form_with model: @user do |f| %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><%= f.label :last_name, "性" %></td>
+              <td><%= f.text_field :last_name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :first_name, "名" %></td>
+              <td><%= f.text_field :first_name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :nickname, "ニックネーム" %></td>
+              <td><%= f.text_field :nickname %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "住所" %></td>
+              <td><%= f.text_field :address %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :age, "年齢" %></td>
+              <td><%= f.text_field :age %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :mycar, "愛車" %></td>
+              <td><%= f.text_field :mycar %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :mycar_image, "愛車画像" %></td>
+              <td><%= f.file_field :mycar_image, accept: "image/*" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :circuit_track_id, "メインサーキット" %></td>
+              <td><%= f.collection_select :circuit_track_id, CircuitTrack.all, :id, :name,{prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :freeprofile, "プロフィール" %></td>
+              <td><%= f.text_area :freeprofile %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+
+        <div id="my_best_times">
+          <%= f.fields_for :my_best_times do |best_time_form| %>
+            <%= render 'my_best_time_fields', form: best_time_form %>
+          <% end %>
+          <div class="links">
+              <%= link_to_add_association '追加', f, :my_best_times, form_name: "form", class: "btn btn-primary" %>
+          </div>
+          <%= f.submit '保存', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

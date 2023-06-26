@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="text-center"><%= @circuit_track.name %>の詳細</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>サーキット名</th>
+            <td><%= @circuit_track.name %></td>
+          </tr>
+          
+          <tr>
+            <th>住所</th>
+            <td><%= @circuit_track.address %></td>
+          </tr>
+            <th>ベストタイム</th>
+            <td>
+              <% @top_times.reverse_each do |time| %>
+                <%= time.user.nickname %>: <%= time.my_best_time %><br>
+              <% end %>
+            </td>
+          </tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag @circuit_track.circuit_image, size: "400x320" %>
+    </div>
+  </div>
+</div>

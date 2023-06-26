@@ -1,0 +1,31 @@
+<h1>マイページ</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>氏名</th>
+      <th>ニックネーム</th>
+      <th>メールアドレス</th>
+      <th>年齢</th>
+      <th>マイカー</th>
+      <th>メインサーキット</th>
+      <th>フリープロフィール</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @user.id %></td>
+        <td><%= @user.last_name %><%= @user.first_name %></td>
+        <td><%= @user.nickname%></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.age %></td>
+        <td><%= @user.mycar %></td>
+        <td><%= @user.main_circuit %></td>
+        <td><%= @user.freeprofile %></td>
+        <td>
+          <%= link_to "編集", edit_user_path(@user.id) %>
+        </td>
+      </tr>
+  </tbody>
+</table>

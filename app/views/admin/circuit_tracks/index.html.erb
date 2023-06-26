@@ -1,0 +1,35 @@
+<h1>サーキット一覧</h1>
+
+<h1><%= link_to "+", new_admin_circuit_track_path %></h1> 
+
+<% @circuit_tracks.each do |ct| %>
+<%= ct.name %>
+<%= ct.address %>
+<%= ct.circuit_image %>
+<%= link_to "編集", edit_admin_category_path(ct.id) %>
+<%= link_to "削除", admin_categories_path(ct.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+<% end %>
+
+
+<h1>サーキット作成</h1>
+
+<%= form_with model: @circuit_track, url: admin_circuit_tracks_path, multipart: true do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+
+  <div>
+    <%= f.label :circuit_image %>
+    <%= f.file_field :circuit_image %>
+  </div>
+
+  <div>
+    <%= f.submit '投稿する' %>
+  </div>
+<% end %>

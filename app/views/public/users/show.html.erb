@@ -1,0 +1,56 @@
+<div class="container">
+  <h1 class="text-center"><%= @user.nickname %>さんのマイページ</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table">
+        <tbody>
+          <% if admin_signed_in? %>
+          <tr>
+            <th>氏名</th>
+            <td><%= @user.last_name %><%= @user.first_name %></td>
+          </tr>
+          <% end %>
+          <% if @user == current_user %>
+          <tr>
+            <th>氏名</th>
+            <td><%= @user.last_name %><%= @user.first_name %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <th>住所</th>
+            <td><%= @user.address %></td>
+          </tr>
+          <tr>
+            <th>年齢</th>
+            <td><%= @user.age %>歳</td>
+          </tr>
+          <tr>
+            <th>愛車</th>
+            <td><%= @user.mycar %></td>
+            <% if @user.mycar_image.attached? %>
+            <td><%= image_tag @user.mycar_image, size: "300x220" %></td>
+            <% end %>
+          </tr>
+            <th>メインサーキット</th>
+            <td><%= CircuitTrack.find_by(id: @user.circuit_track_id)&.name %></td>
+          </tr>
+          <tr>
+            <th>ベストタイム</th>
+            <td>
+              <% @my_best_times.each do |my_best_time| %>
+                <%= my_best_time.circuit_track.name %>: <%= my_best_time.my_best_time %><br>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <%= link_to "マイページを編集する", edit_user_path(@user.id), class: "btn btn-primary" %>
+
+    </div>
+    <div class="col-md-4">
+      <h2>プロフィール</h2><br>
+      <p><%= @user.freeprofile %></p>
+    </div>
+  </div>
+</div>

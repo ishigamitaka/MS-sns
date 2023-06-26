@@ -1,0 +1,31 @@
+<h1>サーキット一覧</h1>
+
+<div class="container">
+  <div class="row">
+    <% @circuit_tracks.each do |ct| %>
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <%= link_to circuit_track_path(ct.id), class: "card-link" do %>
+            <%= image_tag ct.circuit_image, class: "card-img-top", alt: "Circuit Image" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= ct.name %></h5>
+              <p class="card-text"><%= ct.address %></p>
+            </div>
+          <% end %>
+          <% if admin_signed_in? %>
+            <div class="card-footer">
+              <%= link_to "管理者用削除ボタン", admin_circuit_track_path(ct.id), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+              <%= link_to "管理者用編集ボタン", edit_admin_circuit_track_path(ct.id), class: "btn btn-primary btn-sm ml-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if admin_signed_in? %>
+  <div class="text-center">
+    <%= link_to "+", new_admin_circuit_track_path, class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= link_to "+", new_post_path %>
+    </div>
+    
+    <div class="col-md-9">
+      <h1 class="timeline-heading">タイムライン</h1>
+      <% @posts.each do |post| %>
+        <div class="timeline-post">
+          <div class="post-header">
+            <div class="post-avatar">
+              <% if post.user.present? %>
+                <%= link_to post_path(post.id), class: "post-author" do %>
+                  <%= post.user.nickname %>
+                <% end %>
+              <% else %>
+                <span class="deleted-author">削除された投稿者</span>
+              <% end %>
+            </div>
+            <div class="post-info">
+              <h2 class="post-title"><%= post.title %></h2>
+              <p class="post-body"><%= post.body %></p>
+            </div>
+          </div>
+          <div class="post-image">
+            <% if post.image.attached? %>
+              <%= image_tag post.image, class: "post-image-preview", size: "200x160" %>
+            <% end %>
+          </div>
+          <div class="post-actions">
+            <div class="comment-count">
+              <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+            </div>
+            <% if admin_signed_in? %>
+              <div class="delete-post">
+                <%= button_to post_path(post.id), method: :delete, class: "delete-button" do %>
+                  削除する
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

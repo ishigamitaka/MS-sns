@@ -1,0 +1,8 @@
+  ja:
+    enums:
+      user:
+        main_circuit:
+          tukubacircuit: "筑波サーキット"
+          fuji_speedway: "富士スピードウェイ"
+          suzukacircuit: "鈴鹿サーキット"
+          twinringmotegi: "ツインリンクもてぎ"
