@@ -14,7 +14,6 @@
             <% end %>
             <th>愛車</th>
             <th></th>
-            <th>メインサーキット</th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +35,6 @@
                   <%= image_tag user.mycar_image, size: "100x80" %>
                 <% end %>
               </td>
-              <td><%= user.main_circuit %></td>
               <td>
                 <% if admin_signed_in? %>
                   <%= link_to "管理者用削除ボタン", user_path(user.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>

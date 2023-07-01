@@ -11,13 +11,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
       main {
-        background-color: #33FFCC;
+        background-color: #2f2f2f;
       }
       header {
-        background-color: #00FFFF;
+        background-color: #ff3838;
+        color: white;
+      }
+      header a {
+        color: white;
       }
       footer {
-        background-color: #C299FF;
+        background-color: #ff3838;
       }
     </style>
   </head>
@@ -34,105 +38,87 @@
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to users_path, class: "btn nav-link" do %>
+                <%= link_to users_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-users"></i>
                   会員管理
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to posts_path, class: "btn nav-link" do %>
+                <%= link_to posts_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-pencil"></i>
                   投稿管理
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to circuit_tracks_path, class: "btn nav-link" do %>
+                <%= link_to circuit_tracks_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-map"></i>
                   サーキット管理
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to destroy_admin_session_path, method: :delete, class: "btn nav-link" do %>
+                <%= link_to destroy_admin_session_path, method: :delete, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-sign-out-alt"></i>
                   ログアウト
                 <% end %>
               </li>
             <% elsif user_signed_in? %>
               <li class="nav-item">
-                <%= link_to user_path(current_user), class: "btn nav-link" do %>
+                <%= link_to user_path(current_user), class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-user"></i>
                   マイページ
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to parts_path, class: "btn nav-link" do %>
+                <%= link_to parts_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fas fa-wrench"></i>
                   パーツレビュー
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to circuit_tracks_path, class: "btn nav-link" do %>
+                <%= link_to circuit_tracks_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fas fa-flag-checkered"></i>
                   サーキット
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to track_events_path, class: "btn nav-link" do %>
+                <%= link_to track_events_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-calendar"></i>
                   イベント
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to users_path, class: "btn nav-link" do %>
+                <%= link_to users_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-users"></i>
                   ユーザーズ（仮）
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to user_path(current_user), class: "btn nav-link" do %>
-                  <i class="fa fa-user-plus"></i>
-                  フォロー
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to user_path(current_user), class: "btn nav-link" do %>
-                  <i class="fa fa-users"></i>
-                  フォロワー
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to user_path(current_user), class: "btn nav-link" do %>
-                  <i class="fa fa-heart"></i>
-                  いいね
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete, class: "btn nav-link" do %>
+                <%= link_to destroy_user_session_path, method: :delete, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-sign-out-alt"></i>
                   ログアウト
                 <% end %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to circuit_tracks_path, class: "btn nav-link" do %>
+                <%= link_to circuit_tracks_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fas fa-flag-checkered"></i>
                   サーキット
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to track_events_path, class: "btn nav-link" do %>
+                <%= link_to track_events_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-calendar"></i>
                   イベント
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_registration_path, class: "btn nav-link" do %>
+                <%= link_to new_user_registration_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-user-plus"></i>
                   新規登録
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_session_path, class: "btn nav-link" do %>
+                <%= link_to new_user_session_path, class: "btn nav-link", style: "color: white;" do %>
                   <i class="fa fa-sign-in-alt"></i>
                   ログイン
                 <% end %>

@@ -8,19 +8,24 @@
             <th>サーキット名</th>
             <td><%= @circuit_track.name %></td>
           </tr>
-          
           <tr>
             <th>住所</th>
             <td><%= @circuit_track.address %></td>
           </tr>
-            <th>ベストタイム</th>
+          <th>ベストタイム（上位10位まで）</th><br>
+          <% @top_times.reverse_each do |time| %>
+          <tr>
             <td>
-              <% @top_times.reverse_each do |time| %>
-                <%= time.user.nickname %>: <%= time.my_best_time %><br>
-              <% end %>
+              <%= link_to time.user.nickname, user_path(time.user_id) %>
+            </td>
+            <td>
+              <%= time.user.mycar %>
+            </td>
+            <td>
+              <%= time.my_best_time %>
             </td>
           </tr>
-          </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

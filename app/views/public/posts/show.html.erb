@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container", style ="background-image: url('/assets/白黒サーキット.jpg');">
   <div class="row">
-    <div class="col-md-5 offset-2">
-      <h1>tweet詳細</h1>
+    <div class="col-md-5 offset-2 text-white">
+      <h1>投稿詳細</h1>
 
-      <div>
+      <div class="text-white">
         <p>タイトル：<%= @post.title %></p>
         <p>本文：<%= @post.body %></p>
         <% if @post.image.attached? %>
           <%= image_tag @post.image, size: "160x120" %>
         <% end %>
-        <p>投稿者：<%= @post.user.nickname %></p>
+        <p>投稿者：<%= link_to @post.user.nickname, user_path(@post.user_id) %></p>
         <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
         <% if @post.user == current_user %>
           <%= link_to "削除", post_path(@post), method: :delete %>
@@ -30,7 +30,7 @@
         </p>
       <% end %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-white">
       <div>
         <p>コメント件数：<%= @post.post_comments.count %></p>
         <% @post.post_comments.each do |post_comment| %>

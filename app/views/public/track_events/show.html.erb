@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="event">
+        <p>投稿者</p>
+        <% if @event.user.present? %>
+          <%= link_to @event.user.nickname, user_path(@event.user_id) %>
+        <% else %>
+          削除された投稿者
+        <% end %>
+
+        <p>タイトル</p>
+        <%= @event.title %>
+
+        <p>走行カテゴリー</p>
+        <%= @event.run_category %>
+
+        <p>走行日時</p>
+        <%= @event.run_date.strftime('%Y/%m/%d') %>
+
+        <p>参加費</p>
+        <%= @event.price %>円
+
+        <p>募集人数</p>
+        <%= @event.number_people %>人
+
+        <p>詳細</p>
+        <%= @event.body %>
+
+        <% if current_user == @event.user %>
+          <% if @event.deadline.present? %>
+            <p>締め切り</p>
+            <%= @event.deadline %>
+          <% else %>
+            <%= button_to "締め切りを設定する", update_deadline_event_path(@event), method: :patch, class: "btn btn-primary" %>
+          <% end %>
+        <% else %>
+          <% if @event.deadline.present? %>
+            <p>締め切り</p>
+            <%= @event.deadline %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to "一覧に戻る", track_events_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

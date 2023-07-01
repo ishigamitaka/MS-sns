@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container", style ="background-image: url('/assets/エンジン整備.jpg');">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <%= render 'public/shared/error_messages', resource: @user %>
-      <h1 class="text-center"><%= @user.nickname %>さんの編集ページ</h1>
+      <h1 class="text-center text-white"><%= @user.nickname %>さんの編集ページ</h1>
       <%= form_with model: @user do |f| %>
-        <table class="table">
+        <table class="table text-white">
           <tbody>
             <tr>
               <td><%= f.label :last_name, "性" %></td>
@@ -45,9 +45,9 @@
           </tbody>
         </table>
 
-        <%= f.submit "更新する", class: "btn btn-primary" %>
+        <%= f.submit "更新する", class: "btn btn-primary text-white" %>
 
-        <div id="my_best_times">
+        <div id="my_best_times text-white">
           <%= f.fields_for :my_best_times do |best_time_form| %>
             <%= render 'my_best_time_fields', form: best_time_form %>
           <% end %>

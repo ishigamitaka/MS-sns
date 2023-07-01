@@ -9,6 +9,7 @@ class CreateTrackEvents < ActiveRecord::Migration[6.1]
       t.datetime :run_date, null: false
       t.integer :price, null: false
       t.integer :number_people, null: false
+      t.datetime :deadline
       t.timestamps
     end
   end

@@ -9,7 +9,7 @@
 
 
 admin = Admin.new(
-  email: 'a@a',
-  password: 'kanrisya',
+  email: 'b@b',
+  password: 'bbbbbb',
 )
 admin.save!

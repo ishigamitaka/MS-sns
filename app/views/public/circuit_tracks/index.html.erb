@@ -1,10 +1,9 @@
+<div class="container", style ="background-image: url('/assets/チェッカーフラグ.jpg');">
 <h1>サーキット一覧</h1>
-
-<div class="container">
   <div class="row">
     <% @circuit_tracks.each do |ct| %>
-      <div class="col-md-6">
-        <div class="card mb-4">
+      <div class="col-md-3",>
+        <div class="card mb-9">
           <%= link_to circuit_track_path(ct.id), class: "card-link" do %>
             <%= image_tag ct.circuit_image, class: "card-img-top", alt: "Circuit Image" %>
             <div class="card-body">

@@ -38,18 +38,24 @@ Rails.application.routes.draw do
     resources :users do
       resources :my_best_times
       member do
-        post 'follow', to: 'users#follow'
-        post 'unfollow', to: 'users#unfollow'
+        post 'follow', to: 'users#follow', as: 'follow'
+        post 'unfollow', to: 'users#unfollow', as: 'unfollow'
       end
-    end 
-    
+    end
+    resources :follows, only: [:create, :destroy]
     resources :mycars
     resources :homes
     resources :parts
     resources :circuit_tracks
     resources :categories
-    resources :follows, only: [:create, :destroy]
+    resources :events do
+      patch 'update_deadline', on: :member
+    end
+
   end 
   root to: "public/homes#top"
   get 'about' => 'public/homes#about'
+  
+  
+  
 end

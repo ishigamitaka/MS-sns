@@ -3,38 +3,18 @@
     <div class="col-md-8">
       <h1 class="text-center">イベント一覧</h1>
       <%= link_to "投稿する", new_track_event_path, class: "btn btn-primary" %>
-      
+
       <% @events.each do |te| %>
-        <div class="event">
-          <p>投稿者</p>
-          <% if te.user.present? %>
-            <%= te.user.nickname %>
-          <% else %>
-            削除された投稿者
-          <% end %>
-          
-          <p>タイトル</p>
-          <%= te.title %>
-          
-          <p>走行カテゴリー</p>
-          <%= te.run_category %>
-          
-          <p>走行日時</p>
-          <%= te.run_date.strftime('%Y/%m/%d') %>
-          
-          <p>参加費</p>
-          <%= te.price %>円
-          
-          <p>募集人数</p>
-          <%= te.number_people %>人
-          
-          <p>詳細</p>
-          <%= te.body %>
-          <p>
-            <%= link_to track_event_favorites_path(@post), method: :post do %>
-              ♡<%= @post.favorites.count %> いいね
-            <% end %>
-          </p>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">タイトル: <%= link_to te.title, track_event_path(te) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">投稿者: <% if te.user.present? %><%= te.user.nickname %><% else %>削除された投稿者<% end %></h6>
+            <p class="card-text">走行カテゴリー: <%= te.run_category %></p>
+            <p class="card-text">走行日時: <%= te.run_date.strftime('%Y/%m/%d') %></p>
+            <p class="card-text">参加費: <%= te.price %>円</p>
+            <p class="card-text">募集人数: <%= te.number_people %>人</p>
+            <p class="card-text">詳細: <%= te.body %></p>
+          </div>
         </div>
       <% end %>
     </div>
