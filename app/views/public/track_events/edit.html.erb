@@ -1,0 +1,39 @@
+<div class="container" style="background-image: url('/assets/エンジン整備.jpg');">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="event text-white">
+        <%= form_with(model: @event, url: track_event_path(@event), method: :patch) do |form| %>
+          <p>投稿者</p>
+          <% if @event.user.present? %>
+            <%= link_to @event.user.nickname, user_path(@event.user_id) %>
+          <% else %>
+            削除された投稿者
+          <% end %>
+
+          <p>タイトル</p>
+          <%= form.text_field :title %>
+
+          <p>走行カテゴリー</p>
+          <%= form.text_field :run_category %>
+
+          <p>走行日時</p>
+          <%= form.date_field :run_date %>
+
+          <p>参加費</p>
+          <%= form.number_field :price %>
+
+          <p>募集人数</p>
+          <%= form.number_field :number_people %>
+
+          <p>詳細</p>
+          <%= form.text_area :body %>
+
+          <%= form.submit "更新", class: "btn btn-primary" %>
+          
+        <% end %>
+
+        <%= link_to "一覧に戻る", track_events_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

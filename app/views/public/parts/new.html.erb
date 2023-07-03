@@ -1,34 +1,36 @@
-<div class="container">
-  <h1 class="text-center">パーツレビュー投稿</h1>
+<div class="container", style ="background-image: url('/assets/白黒ピット.jpg');">
+  <h1 class="text-center text-white">パーツレビュー投稿</h1>
 
   <%= form_for @part, html: { class: "form" } do |f| %>
-    <div class="form-group">
+  <div class="col-md-6-center">
+    <div class="form-group text-white">
       <%= f.label :parts_name, "パーツ名" %>
       <%= f.text_field :parts_name, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-white">
       <%= f.label :parts_image, "画像" %>
       <%= f.file_field :parts_image, class: "form-control-file" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-white">
       <%= f.label :howmuch, "値段" %>
       <%= f.text_field :howmuch, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-white">
       <%= f.label :effect, "効果" %>
       <%= f.text_field :effect, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group text-white">
       <%= f.label :review, "レビュー" %>
       <%= f.text_area :review, class: "form-control" %>
     </div>
 
-    <div class="text-center">
+    <div class="text-center text-white">
       <%= f.submit "投稿する", class: "btn btn-primary" %>
     </div>
+  </div>
   <% end %>
 </div>

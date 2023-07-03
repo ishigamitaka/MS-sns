@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container", style ="background-image: url('/assets/サーキットレース.jpg');">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="event">
+      <div class="event text-white">
         <p>投稿者</p>
         <% if @event.user.present? %>
           <%= link_to @event.user.nickname, user_path(@event.user_id) %>
@@ -25,23 +25,28 @@
         <%= @event.number_people %>人
 
         <p>詳細</p>
-        <%= @event.body %>
-
+        <%= @event.body %><br>
+        
         <% if current_user == @event.user %>
           <% if @event.deadline.present? %>
-            <p>締め切り</p>
             <%= @event.deadline %>
+            <!-- 締め切り表示のマークやテキストを追加 -->
+            <p>締め切り済み</p>
           <% else %>
-            <%= button_to "締め切りを設定する", update_deadline_event_path(@event), method: :patch, class: "btn btn-primary" %>
+            <%= button_to "締め切りを設定する", update_deadline_event_path(@event), method: :patch, params: { track_event: { deadline: Time.now } }, class: "btn btn-primary" %>
           <% end %>
         <% else %>
           <% if @event.deadline.present? %>
-            <p>締め切り</p>
             <%= @event.deadline %>
+            <!-- 締め切り表示のマークやテキストを追加 -->
+            閉め切ってます
           <% end %>
         <% end %>
       </div>
       <%= link_to "一覧に戻る", track_events_path, class: "btn btn-primary" %>
+      <% if current_user == @event.user %>
+        <%= link_to "編集する", edit_track_event_path(@event), class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>

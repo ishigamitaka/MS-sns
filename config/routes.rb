@@ -33,8 +33,11 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :track_events
+    resources :track_events do
+      patch 'update_deadline_event', on: :member
+    end
     
+    patch 'track_events/:id/update_deadline_event', to: 'public/track_events#update_deadline_event', as: 'update_deadline_event'
     resources :users do
       resources :my_best_times
       member do

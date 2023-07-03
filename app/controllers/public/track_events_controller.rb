@@ -9,24 +9,30 @@ class Public::TrackEventsController < ApplicationController
   end 
   def show
     @event = TrackEvent.find(params[:id])
+    #@event.reload
+    #byebug
   end 
-  
-  module Public
-    class EventsController < ApplicationController
-      # コントローラーのコード
-      def update_deadline
-        @event = Event.find(params[:id])
-        # フォームから送信された締め切りの値を更新する処理
-        if @event.update(event_params)
-          redirect_to @event, notice: "締め切りが更新されました。"
-        else
-          # 更新に失敗した場合の処理
-          render track_event_path(@event), notice: "処理に失敗しました"
-        end
-      end
+  def edit
+    @event = TrackEvent.find(params[:id])
+  end 
+  def update
+    @event = TrackEvent.find(params[:id])
+    if @event.update(track_event_params)
+      redirect_to track_event_path(@event), notice: "イベントを更新しました。"
+    else
+      render :edit
+    end
+  end 
+  def update_deadline_event
+    @event = TrackEvent.find(params[:id])
+    if @event.update(track_event_params)
+      #byebug
+      #@event.reload
+      redirect_to @event, notice: "締め切りが更新されました。"
+    else
+      render :show, notice: "処理に失敗しました"
     end
   end
-  
   def create
     @event = TrackEvent.new(track_event_params)
     @event.user_id = current_user.id
@@ -41,7 +47,7 @@ class Public::TrackEventsController < ApplicationController
   private
 
   def track_event_params
-    params.require(:track_event).permit(:title, :body, :run_category, :run_date, :price, :number_people, :deadline)
+    params.require(:track_event).permit(:title, :body, :run_category, :run_date, :price, :number_people, :deadline, :update)
   end
   
   
