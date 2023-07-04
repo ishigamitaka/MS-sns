@@ -1,52 +1,68 @@
+
 <div class="container", style ="background-image: url('/assets/サーキットレース.jpg');">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="event text-white">
-        <p>投稿者</p>
-        <% if @event.user.present? %>
-          <%= link_to @event.user.nickname, user_path(@event.user_id) %>
-        <% else %>
-          削除された投稿者
-        <% end %>
-
-        <p>タイトル</p>
-        <%= @event.title %>
-
-        <p>走行カテゴリー</p>
-        <%= @event.run_category %>
-
-        <p>走行日時</p>
-        <%= @event.run_date.strftime('%Y/%m/%d') %>
-
-        <p>参加費</p>
-        <%= @event.price %>円
-
-        <p>募集人数</p>
-        <%= @event.number_people %>人
-
-        <p>詳細</p>
-        <%= @event.body %><br>
-        
-        <% if current_user == @event.user %>
-          <% if @event.deadline.present? %>
-            <%= @event.deadline %>
-            <!-- 締め切り表示のマークやテキストを追加 -->
-            <p>締め切り済み</p>
-          <% else %>
-            <%= button_to "締め切りを設定する", update_deadline_event_path(@event), method: :patch, params: { track_event: { deadline: Time.now } }, class: "btn btn-primary" %>
-          <% end %>
-        <% else %>
-          <% if @event.deadline.present? %>
-            <%= @event.deadline %>
-            <!-- 締め切り表示のマークやテキストを追加 -->
-            閉め切ってます
-          <% end %>
-        <% end %>
+  <div class="py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-5 offset-1">
+        <div class="event text-white">
+          <table style="border-spacing: 10px;">
+            <tr>
+              <th>投稿者</th>
+              <% if @event.user.present? %>
+                <td><%= link_to @event.user.nickname, user_path(@event.user_id) %></td>
+              <% else %>
+                <td>削除された投稿者</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>タイトル</th>
+              <td><%= @event.title %></td>
+            </tr>
+            <tr>
+              <th>走行カテゴリー</th>
+              <td><%= @event.run_category %></td>
+            </tr>
+            <tr>
+              <th>走行日時</th>
+              <td><%= @event.run_date.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <th>参加費</th>
+              <td><%= @event.price %>円</td>
+            </tr>
+            <tr>
+              <th>募集人数</th>
+              <td><%= @event.number_people %>人</td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <%= link_to "一覧に戻る", track_events_path, class: "btn btn-primary" %>
-      <% if current_user == @event.user %>
-        <%= link_to "編集する", edit_track_event_path(@event), class: "btn btn-primary" %>
-      <% end %>
+      <div class="col-md-6">
+        <div class="text-white">
+          <th>詳細</th><br>
+            <%= @event.body %><br>
+            
+            <% if current_user == @event.user %>
+              <% if @event.deadline.present? %>
+                <i class="fa-sharp fa-solid fa-flag-checkered fa-2xl"></i><br>
+                <%= @event.deadline.strftime('%Y/%m/%d') %><br>
+                締め切り済み。
+              <% else %>
+                <%= button_to "締め切りを設定する", update_deadline_event_path(@event), method: :patch, params: { track_event: { deadline: Time.now } }, class: "btn btn-primary" %>
+              <% end %>
+            <% else %>
+              <% if @event.deadline.present? %>
+                <i class="fa-sharp fa-solid fa-flag-checkered fa-2xl"></i><br>
+                <%= @event.deadline.strftime('%Y/%m/%d') %><br>
+                このイベントは締め切り済みです。
+              <% end %>
+            <% end %>
+          </div>
+          <%= link_to "一覧に戻る", track_events_path, class: "btn btn-primary" %>
+          <% if current_user == @event.user %>
+            <%= link_to "編集する", edit_track_event_path(@event), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

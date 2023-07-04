@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center text-white">サーキット編集</h1>
+
+      <%= form_with model: @circuit_track, url: admin_circuit_track_path(@circuit_track), method: :patch, multipart: true do |f| %>
+        <div class="form-group text-white">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group text-white">
+          <%= f.label :address %>
+          <%= f.text_area :address, class: "form-control" %>
+        </div>
+
+        <div class="form-group text-white">
+          <%= f.label :circuit_image %>
+          <%= f.file_field :circuit_image, class: "form-control-file" %>
+        </div>
+
+        <div class="text-center text-white">
+          <%= f.submit '更新する', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

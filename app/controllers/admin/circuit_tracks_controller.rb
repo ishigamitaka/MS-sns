@@ -19,6 +19,14 @@ class Admin::CircuitTracksController < ApplicationController
       render :new
     end
   end
+  def update
+    @circuit_track = CircuitTrack.find(params[:id])
+    if @circuit_track.update(circuit_track_params)
+      redirect_to circuit_track_path(@circuit_track)
+    else
+      render :edit
+    end
+  end 
   def destroy
     @circuit_track = CircuitTrack.find(params[:id])
     @circuit_track.destroy
