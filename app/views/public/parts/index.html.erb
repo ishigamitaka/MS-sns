@@ -1,43 +1,29 @@
-<div class="container", style="background-image : url(assets/ガレージ汚い);">
+<div class="container" style="background-image: url('/assets/ガレージ汚い');">
   <h1 class="text-center text-white">パーツレビュー</h1>
   <div class="text-center mb-3">
     <%= link_to "投稿する", new_part_path, class: "btn btn-primary" %>
   </div>
 
-  <table class="table text-center text-white">
-    <thead>
-      <tr>
-        <th>投稿者</th>
-        <th>車種</th>
-        <th>パーツ名</th>
-        <th>画像</th>
-        <th>値段</th>
-        <th>効果</th>
-        <th>レビュー</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @parts.each do |pa| %>
-        <tr>
-          <td>
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @parts.each do |pa| %>
+      <div class="col mb-4">
+        <div class="card text-white bg-dark">
+          <% if pa.parts_image.attached? %>
+            <%= image_tag pa.parts_image, class: "card-img-top", alt: "パーツ画像" %>
+          <% else %>
+            <%= image_tag "default_parts_image.jpg", class: "card-img-top", alt: "デフォルト画像" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= pa.parts_name %></h5>
+            <p class="card-text">車種: <%= pa.user.mycar %></p>
             <% if pa.user.present? %>
-              <%= link_to pa.user.nickname, part_path(pa) %>
+              <%= link_to pa.user.nickname, part_path(pa), class: "btn btn-primary" %>
             <% else %>
-              削除された投稿者
+              <p>削除された投稿者</p>
             <% end %>
-          </td>
-          <td><%= pa.user.mycar %></td>
-          <td><%= pa.parts_name %></td>
-          <td>
-            <% if pa.parts_image.attached? %>
-              <%= image_tag pa.parts_image, size: "160x120" %>
-            <% end %>
-          </td>
-          <td><%= pa.howmuch %>円</td>
-          <td><%= pa.effect %></td>
-          <td><%= pa.review %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
