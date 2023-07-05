@@ -1,5 +1,5 @@
 <div class="container", style ="background-image: url('/assets/サーキットレース.jpg');">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center text-white">
     <div class="col-md-6">
       <h1 class="text-center">イベント参加募集投稿</h1>
 
@@ -8,6 +8,11 @@
           <%= f.label :title, "タイトル" %>
           <%= f.text_field :title, class: "form-control" %>
         </div>
+        
+        <div class="form-group">
+          <%= f.label :location, "場所" %>
+          <%= f.text_field :location, class: "form-control" %>
+        </div>
 
         <div class="form-group">
           <%= f.label :run_category, "走行カテゴリー" %>
@@ -15,18 +20,33 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :run_date, "走行日時" %>
+          <%= f.label :run_date, "開催日" %>
           <%= f.text_field :run_date, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :due_date, "申し込み期限日(例)2023/07/06~2023/08/06" %>
+          <%= f.text_field :due_date, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <%= f.label :price, "参加費" %>
-          <%= f.text_field :price, class: "form-control" %>
+          <%= f.text_field :price, class: "form-control" %>円
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :payment_method, "支払方法" %>
+          <%= f.select :payment_method, [["銀行振込", "銀行振込"], ["現地払い", "現地払い"]], { include_blank: "支払い方法を選択してください" }, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :number_people, "募集人数" %>
-          <%= f.text_field :number_people, class: "form-control" %>
+          <%= f.label :number_people, "募集人(台)数" %>
+          <%= f.text_field :number_people, class: "form-control" %>人(台)
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :contact_address, "主催連絡先（電話番号、メールアドレス等）" %>
+          <%= f.text_field :contact_address, class: "form-control" %>
         </div>
 
         <div class="form-group">

@@ -130,6 +130,10 @@ ActiveRecord::Schema.define(version: 2023_06_29_021111) do
     t.integer "price", null: false
     t.integer "number_people", null: false
     t.datetime "deadline"
+    t.string "contact_address"
+    t.string "payment_method"
+    t.string "due_date"
+    t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

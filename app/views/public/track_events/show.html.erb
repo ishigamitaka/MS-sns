@@ -18,20 +18,36 @@
               <td><%= @event.title %></td>
             </tr>
             <tr>
+              <th>場所</th>
+              <td><%= @event.location %></td>
+            </tr>
+            <tr>
               <th>走行カテゴリー</th>
               <td><%= @event.run_category %></td>
             </tr>
             <tr>
-              <th>走行日時</th>
+              <th>開催日</th>
               <td><%= @event.run_date.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <th>申し込み期限日</th>
+              <td><%= @event.due_date %></td>
             </tr>
             <tr>
               <th>参加費</th>
               <td><%= @event.price %>円</td>
             </tr>
             <tr>
-              <th>募集人数</th>
+              <th>支払方法</th>
+              <td><%= @event.payment_method %></td>
+            </tr>
+            <tr>
+              <th>募集人(台)数</th>
               <td><%= @event.number_people %>人</td>
+            </tr>
+            <tr>
+              <th>主催連絡先</th>
+              <td><%= @event.contact_address %></td>
             </tr>
           </table>
         </div>
