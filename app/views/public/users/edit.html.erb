@@ -47,14 +47,19 @@
 
         <%= f.submit "更新する", class: "btn btn-primary text-white" %>
 
-        <div id="my_best_times text-white">
-          <%= f.fields_for :my_best_times do |best_time_form| %>
-            <%= render 'my_best_time_fields', form: best_time_form %>
-          <% end %>
-          <div class="links">
-              <%= link_to_add_association '追加', f, :my_best_times, form_name: "form", class: "btn btn-primary" %>
+        <div id="my_best_times">
+          <div class="text-white">
+            
+            <%= f.fields_for :my_best_times do |best_time_form| %>
+              
+              <%= render 'my_best_time_fields', form: best_time_form %>
+            <% end %>
+            <div class="links">
+                  
+                <%= link_to_add_association '追加', f, :my_best_times, form_name: "form", class: "btn btn-primary" %>
+            </div>
+            <%= f.submit '保存', class: "btn btn-primary" %>
           </div>
-          <%= f.submit '保存', class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

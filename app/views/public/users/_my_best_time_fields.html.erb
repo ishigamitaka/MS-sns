@@ -1,12 +1,13 @@
 <div class="nested-fields">
-  <%# @my_best_times.each do |my_best_time| %>
     
-    <%= form.label :circuit_track %>
+    <%= form.label :circuit_track, "サーキット選択" %>
     
     <%= form.collection_select :circuit_track_id, CircuitTrack.all, :id, :name,{prompt: "選択してください"}, {class: "new-wrapper__main__input-select"} %>
+    
+    <%= form.label :my_best_time, "例1.08.555" %>
     
     <%= form.text_field :my_best_time %>
     
     <%= link_to_remove_association '削除', form %>
-  <%# end %>
+    
 </div>
