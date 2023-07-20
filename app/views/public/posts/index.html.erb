@@ -8,7 +8,7 @@
       </div>
     </div>
     
-    <div class="col-md-6">
+    <div class="col-md-9">
       <h1 class="timeline-heading">タイムライン</h1>
       <% @posts.each do |post| %>
         <div class="card timeline-post">
@@ -49,7 +49,7 @@
     </div>
 
     <% if admin_signed_in? %>
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-body">
           <%= link_to "イベント投稿管理", track_events_path, class: "btn btn-primary btn-lg btn-block" %>
