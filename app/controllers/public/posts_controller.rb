@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
     #@category = params[:category]
   end
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
     @post_comment = PostComment.new
   end
   def show
