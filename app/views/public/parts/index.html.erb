@@ -11,7 +11,7 @@
           <% if pa.parts_image.attached? %>
             <%= image_tag pa.parts_image, class: "card-img-top", alt: "パーツ画像" %>
           <% else %>
-            <%= image_tag "default_parts_image.jpg", class: "card-img-top", alt: "デフォルト画像" %>
+            <%= image_tag "default-image.jpg", class: "card-img-top", alt: "default-image.jpg" %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= pa.parts_name %></h5>
