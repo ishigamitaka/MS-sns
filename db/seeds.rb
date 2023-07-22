@@ -12,4 +12,4 @@ admin = Admin.new(
   email: 'b@b',
   password: 'bbbbbb',
 )
-admin.save!
+admin.save
