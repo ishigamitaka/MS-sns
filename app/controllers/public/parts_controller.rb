@@ -18,7 +18,14 @@ class Public::PartsController < ApplicationController
       render :new
     end
   end
-  
+  def destroy
+    @part = Part.find(params[:id])
+    if @part.destroy
+      redirect_to parts_path
+    else 
+      render :index
+    end 
+  end 
   
   private
 

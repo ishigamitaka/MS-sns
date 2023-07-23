@@ -25,6 +25,11 @@
             <% else %>
               <p>削除された投稿者</p>
             <% end %>
+            <% if admin_signed_in? %>
+              <%= button_to part_path(pa.id), method: :delete, class: "btn btn-danger delete-button" do %>
+                削除する
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
