@@ -31,6 +31,11 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  def self.my_followers(user)
+    follower_ids = Follow.where(followed_id: user.id).pluck(:follower_id)
+    User.where(id: follower_ids)
+  end
+  
   
   validates :last_name, presence: true
   validates :first_name, presence: true

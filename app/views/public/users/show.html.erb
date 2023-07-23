@@ -67,7 +67,7 @@
 
       <div class="follower-sidebar text-white">
         <h3>フォロワー</h3>
-        <% @user.followers.each do |follower| %>
+        <% User.my_followers(@user).each do |follower| %>
           <%# unless follower == @user %>
             <p><%= link_to User.find(follower.id).nickname, user_path(follower.id) %></p>
           <%# end %>
