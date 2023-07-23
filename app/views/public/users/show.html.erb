@@ -52,7 +52,11 @@
     </div>
     <div class="col-md-4 text-white">
       <h2>プロフィール</h2><br>
-      <p><%=safe_join(@user.freeprofile.split("\n"),tag(:br))%></p>
+        <%if @user.freeprofile.nil? %>
+          <p><%= @user.freeprofile %></p>
+        <% else %>
+          <p><%=safe_join(@user.freeprofile.split("\n"),tag(:br))%></p>
+        <%end %>
 
       <div class="follow-sidebar text-white">
         <h3>フォロー</h3>

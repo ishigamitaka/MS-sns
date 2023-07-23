@@ -26,7 +26,13 @@
             </div>
             <div class="post-info">
               <h2 class="post-title"><%= post.title %></h2>
-              <p class="post-body"><%=safe_join(post.body.split("\n"),tag(:br))%></p>
+              <p class="post-body">
+                <%if post.body.nil? %>
+                  <%= post.body %>
+                <% else %>
+                  <<%=safe_join(post.body.split("\n"),tag(:br))%>
+                <%end %>
+              </p>
               <p class="post-date"><%= post.created_at.strftime('%Y/%m/%d/ %H:%M:%S')%></p>
             </div>
           </div>

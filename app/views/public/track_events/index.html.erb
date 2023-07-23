@@ -13,7 +13,13 @@
             <p class="card-text">走行日時: <%= te.run_date.strftime('%Y/%m/%d') %></p>
             <p class="card-text">参加費: <%= te.price %>円</p>
             <p class="card-text">募集人数: <%= te.number_people %>人</p>
-            <p class="card-text">詳細: <%=safe_join(te.body.split("\n"),tag(:br))%></p>
+            <p class="card-text">詳細: 
+              <%if te.body.nil? %>
+                <%= te.body %>
+              <% else %>
+                <%=safe_join(te.body.split("\n"),tag(:br))%>
+              <%end %>
+            </p>
           </div>
         </div>
       <% end %>

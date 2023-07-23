@@ -5,7 +5,11 @@
 
       <div class="text-white">
         <p>タイトル：<%= @post.title %></p>
-        <p>本文：<%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+        <%if @post.body.nil? %>   # 「空」のままだとエラーが出るのでnil?=trueの時を追加
+          <%= @post.body %>       # バリデーションは無し 
+        <% else %>
+          <p>本文：<%=safe_join(@post.body.split("\n"),tag(:br))%></p>    # 「空」じゃない時は正常に反映する
+        <%end %>
         <% if @post.image.attached? %>
           <%= image_tag @post.image, size: "160x120" %>
         <% end %>
