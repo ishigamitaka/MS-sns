@@ -15,7 +15,11 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= pa.parts_name %></h5>
-            <p class="card-text">車種: <%= pa.user.mycar %></p>
+            <% if pa.user && pa.user.present? %>
+              <p class="card-text">車種: <%= pa.user.mycar %></p>
+            <% else %>
+              <!-- ユーザーが存在しない場合の処理 -->
+            <% end %>
             <% if pa.user.present? %>
               <%= link_to pa.user.nickname, part_path(pa), class: "btn btn-primary" %>
             <% else %>
