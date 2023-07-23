@@ -33,7 +33,7 @@
       </tr>
       <tr>
         <th>レビュー</th>
-        <td><%= @part.review %></td>
+        <td><%=safe_join(@part.review.split("\n"),tag(:br))%></td>
       </tr>
   </table>
 </div>

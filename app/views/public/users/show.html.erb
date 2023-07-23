@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-4 text-white">
       <h2>プロフィール</h2><br>
-      <p><%= @user.freeprofile %></p>
+      <p><%=safe_join(@user.freeprofile.split("\n"),tag(:br))%></p>
 
       <div class="follow-sidebar text-white">
         <h3>フォロー</h3>
@@ -64,9 +64,9 @@
       <div class="follower-sidebar text-white">
         <h3>フォロワー</h3>
         <% @user.followers.each do |follower| %>
-          <% unless follower == @user %>
+          <%# unless follower == @user %>
             <p><%= link_to User.find(follower.id).nickname, user_path(follower.id) %></p>
-          <% end %>
+          <%# end %>
         <% end %>
       </div>
 

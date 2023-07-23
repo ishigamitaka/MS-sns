@@ -24,7 +24,7 @@
             </div>
             <div class="post-info">
               <h2 class="post-title"><%= post.title %></h2>
-              <p class="post-body"><%= post.body %></p>
+              <p class="post-body"><%=safe_join(post.body.split("\n"),tag(:br))%></p>
             </div>
           </div>
           <div class="card-body post-image">

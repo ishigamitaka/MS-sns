@@ -5,7 +5,7 @@
 
       <div class="text-white">
         <p>タイトル：<%= @post.title %></p>
-        <p>本文：<%= @post.body %></p>
+        <p>本文：<%=safe_join(@post.body.split("\n"),tag(:br))%></p>
         <% if @post.image.attached? %>
           <%= image_tag @post.image, size: "160x120" %>
         <% end %>

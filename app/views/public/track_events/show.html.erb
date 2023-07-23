@@ -55,7 +55,7 @@
       <div class="col-md-6">
         <div class="text-white">
           <th>詳細</th><br>
-            <%= @event.body %><br>
+            <%=safe_join(@event.body.split("\n"),tag(:br))%><br>
             
             <% if current_user == @event.user %>
               <% if @event.deadline.present? %>
