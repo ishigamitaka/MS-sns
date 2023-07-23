@@ -5,7 +5,10 @@
       <div class="col-md-3",>
         <div class="card mb-9">
           <%= link_to circuit_track_path(ct.id), class: "card-link" do %>
+          <% if ct.circuit_image.attached? %>
             <%= image_tag ct.circuit_image, class: "card-img-top", alt: "Circuit Image" %>
+          <% end %>
+            
             <div class="card-body">
               <h5 class="card-title"><%= ct.name %></h5>
               <p class="card-text"><%= ct.address %></p>

@@ -30,7 +30,9 @@
       </table>
     </div>
     <div class="col-md-4">
-      <%= image_tag @circuit_track.circuit_image, size: "400x320" %>
+      <% if @circuit_track.circuit_image.attached? %>
+        <%= image_tag @circuit_track.circuit_image, size: "400x320" %>
+      <% end %>
     </div>
   </div>
 </div>
