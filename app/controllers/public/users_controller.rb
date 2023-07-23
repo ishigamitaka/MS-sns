@@ -1,9 +1,4 @@
 class Public::UsersController < ApplicationController
-  # def new
-  #   @user = User.new
-  # end 
-  
-  
   def index
     @users = User.all
   end 
@@ -32,19 +27,16 @@ class Public::UsersController < ApplicationController
     redirect_to @user, notice: 'フォローしました'
   end
   
+  def followers
+    @user = User.find(params[:user_id])
+    @users = user.followers
+  end
+  
   def unfollow
     @user = User.find(params[:id])
     current_user.unfollow(@user)
     redirect_to @user, notice: 'フォローを解除しました'
   end
-  # def create
-  #   @user = User.new(user_params) 
-  #   if @user.save
-  #     redirect_to root_path, notice: "会員登録が完了しました。"
-  #   else
-  #     render :new
-  #   end
-  # end
 
   private
 

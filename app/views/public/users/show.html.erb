@@ -55,14 +55,14 @@
       <p><%= @user.freeprofile %></p>
 
       <div class="follow-sidebar text-white">
-        <h2>フォロー</h2>
+        <h3>フォロー</h3>
         <% @user.follows.each do |follow| %>
           <p><%= link_to User.find(follow.followed_id).nickname, user_path(follow.followed_id) %></p>
         <% end %>
       </div>
 
       <div class="follower-sidebar text-white">
-        <h2>フォロワー</h2>
+        <h3>フォロワー</h3>
         <% @user.followers.each do |follower| %>
           <% unless follower == @user %>
             <p><%= link_to User.find(follower.id).nickname, user_path(follower.id) %></p>

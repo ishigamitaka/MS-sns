@@ -1,33 +1,39 @@
 <div class="container partshow", style ="background-image: url('/assets/エンジン整備.jpg');">
   <h1 class="text-center text-white">パーツ詳細</h1>
   <table class="table text-center text-white">
-    <thead>
       <tr>
         <th>投稿者</th>
-        <th>車種</th>
-        <th>パーツ名</th>
-        <th>画像</th>
-        <th>値段</th>
-        <th>効果</th>
-        <th>レビュー</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
         <td>
           <%= link_to @part.user.nickname, @part.user %>
         </td>
+      </tr>
+      <tr>
+        <th>車種</th>
         <td><%= @part.user.mycar %></td>
+      </tr>
+      <tr>
+        <th>パーツ名</th>
         <td><%= @part.parts_name %></td>
+      </tr>
+      <tr>
+        <th>画像</th>
         <td>
           <% if @part.parts_image.attached? %>
             <%= image_tag @part.parts_image, size: "160x120" %>
           <% end %>
         </td>
+      </tr>
+      <tr>
+        <th>値段</th>
         <td><%= @part.howmuch %>円</td>
+      </tr>
+      <tr>
+        <th>効果</th>
         <td><%= @part.effect %></td>
+      </tr>
+      <tr>
+        <th>レビュー</th>
         <td><%= @part.review %></td>
       </tr>
-    </tbody>
   </table>
 </div>

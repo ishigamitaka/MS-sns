@@ -4,7 +4,7 @@ class Public::TrackEventsController < ApplicationController
   end 
   def index
     #binding.pry
-    @events = TrackEvent.all
+    @events = TrackEvent.order(created_at: :desc)
     @post_comment = PostComment.new
   end 
   def show

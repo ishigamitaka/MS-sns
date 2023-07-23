@@ -3,7 +3,7 @@ class Public::PartsController < ApplicationController
     @part = Part.new
   end 
   def index
-    @parts = Part.all
+    @parts = Part.order(created_at: :desc)
     @post_comment = PostComment.new
   end 
   def show
