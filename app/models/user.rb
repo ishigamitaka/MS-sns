@@ -17,12 +17,12 @@ class User < ApplicationRecord
   
   has_many :follows, foreign_key: :follower_id, dependent: :destroy
   
-  has_many :followings, class_name: Follow,
+  has_many :followings, class_name: 'Follow',
                         through: :follows,
                         source: :followed,
                         dependent: :destroy
                         
-  has_many :followers, class_name: Follow,
+  has_many :followers, class_name: 'Follow',
                        through: :follows,
                        source: :follower,
                        dependent: :destroy
