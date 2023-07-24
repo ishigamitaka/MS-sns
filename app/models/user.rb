@@ -8,16 +8,16 @@ class User < ApplicationRecord
   
   has_many :posts, dependent: :destroy
   has_many :track_events, dependent: :destroy
-  has_many :parts
-  has_many :my_best_times
-  belongs_to :circuit_tracks, optional: true
+  has_many :parts, dependent: :destroy
+  has_many :my_best_times, dependent: :destroy
+  belongs_to :circuit_tracks, optional: true, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
   accepts_nested_attributes_for :my_best_times, allow_destroy: true
   
   has_many :follows, foreign_key: :follower_id, dependent: :destroy
-  has_many :followings, through: :follows, source: :followed
-  has_many :followers, through: :follows, source: :follower
+  has_many :followings, through: :follows, source: :followed, dependent: :destroy
+  has_many :followers, through: :follows, source: :follower, dependent: :destroy
 
   def follow(user)
     followings << user
