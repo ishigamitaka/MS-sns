@@ -2,7 +2,8 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="text-center text-white">イベント一覧</h1>
-      <%= link_to "投稿する", new_track_event_path, class: "btn btn-primary" %>
+      
+        <%= link_to "投稿する", new_track_event_path, class: "btn btn-primary" %>
 
       <% @events.each do |te| %>
         <div class="card">
@@ -20,6 +21,11 @@
                 <%=safe_join(te.body.split("\n"),tag(:br))%>
               <%end %>
             </p>
+            <% if admin_signed_in? %>
+              <%= button_to track_event_path(te.id), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } do %>
+                削除する
+              <% end %>
+            <% end %>
           </div>
         </div>
       <% end %>

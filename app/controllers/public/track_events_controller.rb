@@ -23,6 +23,11 @@ class Public::TrackEventsController < ApplicationController
       render :edit
     end
   end 
+  def destroy
+    @event = TrackEvent.find(params[:id])
+    @event.destroy
+    redirect_to track_events_path
+  end 
   def update_deadline_event
     @event = TrackEvent.find(params[:id])
     if @event.update(track_event_params)
