@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :track_events, dependent: :destroy
   has_many :parts, dependent: :destroy
   has_many :my_best_times, dependent: :destroy
-  belongs_to :circuit_tracks, optional: true, dependent: :destroy
+  belongs_to :circuit_track, optional: true, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
   accepts_nested_attributes_for :my_best_times, allow_destroy: true
