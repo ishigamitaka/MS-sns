@@ -1,7 +1,7 @@
 <div class="container partindex">
   <h1 class="text-center text-white">パーツレビュー</h1>
   <div class="text-center mb-3">
-    <%= link_to "投稿する", new_part_path, class: "btn btn-primary" %>
+      <%= link_to "投稿する", new_part_path, class: "btn btn-primary" %>
   </div>
 
   <div class="row row-cols-1 row-cols-md-4">
@@ -17,16 +17,18 @@
             <h5 class="card-title"><%= pa.parts_name %></h5>
             <% if pa.user && pa.user.present? %>
               <p class="card-text">車種: <%= pa.user.mycar %></p>
-            <% else %>
-              <!-- ユーザーが存在しない場合の処理 -->
             <% end %>
             <% if pa.user.present? %>
-              <%= link_to pa.user.nickname, part_path(pa), class: "btn btn-primary" %>
+              <% if pa.user.deleted? %>
+                <p>削除された投稿者</p>
+              <% else %>
+                <%= link_to pa.user.nickname, part_path(pa), class: "btn btn-primary" %>
+              <% end %>
             <% else %>
               <p>削除された投稿者</p>
             <% end %>
-            <% if admin_signed_in? %>
-              <%= button_to part_path(pa.id), method: :delete, class: "btn btn-danger delete-button" do %>
+            <% if admin_signed_in? && !pa.user.deleted? %>
+              <%= button_to part_path(pa.id), method: :delete, class: "btn btn-danger delete-button", data: { confirm: "本当に削除しますか？" } do %>
                 削除する
               <% end %>
             <% end %>

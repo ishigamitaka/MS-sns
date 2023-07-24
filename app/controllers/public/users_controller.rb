@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
   end
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    @user.update(is_deleted: true)
     redirect_to users_path, notice: "ユーザーが削除されました。"
   end
   

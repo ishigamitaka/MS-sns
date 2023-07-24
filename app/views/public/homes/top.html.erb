@@ -13,6 +13,7 @@
     <div class="col-md-4">
       <h1 class="timeline-heading text-white">タイムライン</h1>
       <% @posts.each do |post| %>
+        <% next if post.user.nil? || post.user.deleted? %>
         <div class="card timeline-post">
           <div class="card-header post-header">
             <div class="post-avatar">

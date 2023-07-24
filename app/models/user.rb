@@ -44,6 +44,10 @@ class User < ApplicationRecord
     User.where(id: follower_ids)
   end
   
+  def deleted?
+    is_deleted
+  end
+  
   
   validates :last_name, presence: true
   validates :first_name, presence: true

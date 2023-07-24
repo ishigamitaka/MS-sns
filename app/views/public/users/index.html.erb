@@ -21,7 +21,11 @@
             <tr>
               <% if admin_signed_in? %>
                 <td><%= user.id %></td>
-                <td><%= user.last_name %><%= user.first_name %></td>
+                <% if user.deleted? %>
+                  <td>削除済みユーザー</td>
+                <% else %>
+                  <td><%= user.last_name %><%= user.first_name %></td>
+                <% end %>
               <% end %>
               <td>
                 <%= link_to user.nickname, user_path(user.id) %>

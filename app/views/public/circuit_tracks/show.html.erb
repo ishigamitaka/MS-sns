@@ -1,8 +1,8 @@
-<div class="container", style ="background-image: url('/assets/サーキットコーナー.jpg');">
+<div class="container circuitshow">
   <h1 class="text-center text-white"><%= @circuit_track.name %>の詳細</h1>
   <div class="row justify-content-center">
     <div class="col-md-7">
-      <table class="table  text-white">
+      <table class="table text-white">
         <tbody>
           <tr>
             <th>サーキット名</th>
@@ -12,19 +12,25 @@
             <th>住所</th>
             <td><%= @circuit_track.address %></td>
           </tr>
-          <th>ベストタイム（上位10位まで）</th><br>
-          <% @top_times.reverse_each do |time| %>
           <tr>
-            <td>
-              <%= link_to time.user.nickname, user_path(time.user_id) %>
-            </td>
-            <td>
-              <%= time.user.mycar %>
-            </td>
-            <td>
-              <%= time.my_best_time %>
-            </td>
+            <th>ベストタイム（上位10位まで）</th>
           </tr>
+          <% @top_times&.reject { |time| time.user&.deleted? }.reverse_each do |time| %>
+            <tr>
+              <td>
+                <% if time.user %>
+                  <%= link_to time.user.nickname, user_path(time.user_id) %>
+                <% else %>
+                  削除済みのユーザー
+                <% end %>
+              </td>
+              <td>
+                <%= time.user&.mycar %>
+              </td>
+              <td>
+                <%= time.my_best_time %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
