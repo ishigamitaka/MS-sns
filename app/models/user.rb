@@ -16,19 +16,12 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :my_best_times, allow_destroy: true
   
   has_many :follows, foreign_key: :follower_id, dependent: :destroy
-  
-  has_many :followings, class_name: 'Follow',
-                        through: :follows,
-                        source: :followed,
-                        dependent: :destroy
-                        
-  has_many :followers, class_name: 'Follow',
-                       through: :follows,
-                       source: :follower,
-                       dependent: :destroy
+
+  has_many :followings, through: :follows, source: :followed
+  has_many :followers, through: :follows, source: :follower
 
   def follow(user)
-    followings << user
+    follows.create(followed_id: user.id)
   end
 
   def unfollow(user)
