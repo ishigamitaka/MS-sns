@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="text-center">ここから先はログイン専用ページです</h1>
+    <p>進むにはログイン、または会員登録をしてください。</p>
+    <div class="row">
+      <div Class="col-md-6 offset3">
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+      </div>
+      <div Class="col-md-6 offset3">
+        <%= link_to "会員登録", new_user_registration_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

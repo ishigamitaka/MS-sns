@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   end 
   root to: "public/homes#top"
   get 'about' => 'public/homes#about'
-  
+  get 'no_signin' => 'public/homes#no_signin'
   
   
 end
