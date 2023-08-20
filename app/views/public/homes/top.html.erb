@@ -44,7 +44,11 @@
           </div>
           <div class="card-footer post-actions">
             <div class="comment-count">
-              <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+              <% if user_signed_in? %>
+                <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+              <% else %>
+                <%= link_to "#{post.post_comments.count} コメント", no_signin_path %>
+              <% end %>
             </div>
             <% if admin_signed_in? %>
               <div class="delete-post">
@@ -55,7 +59,7 @@
             <% end %>
           </div>
         </div>
-      <% end %>
+        <% end %>
     </div>
 
     <% if admin_signed_in? %>
