@@ -14,6 +14,9 @@ class Public::TrackEventsController < ApplicationController
   end 
   def edit
     @event = TrackEvent.find(params[:id])
+    unless current_user.id == @event.user_id
+      redirect_to root_path
+    end
   end 
   def update
     @event = TrackEvent.find(params[:id])
