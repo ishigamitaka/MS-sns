@@ -11,6 +11,7 @@ class Public::UsersController < ApplicationController
     if @user.my_best_times.count == 0 
     @user.my_best_times.build()
     end 
+    #改善すべきここでエラーが出る
     unless current_user.id == @user.user_id
       redirect_to root_path
     end
