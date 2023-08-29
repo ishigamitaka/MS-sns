@@ -8,14 +8,14 @@ class Public::UsersController < ApplicationController
   end 
   def edit
     @user = User.find(params[:id])
-    if @user.my_best_times.count == 0 
-    @user.my_best_times.build()
+    if current_user.id != @user.id
+      redirect_to root_path, alert: "アクセス権限がありません。"
+    else
     end 
-    #改善すべきここでエラーが出る
-    unless current_user.id == @user.user_id
-      redirect_to root_path
-    end
-  end 
+    if @user.my_best_times.count == 0 
+      @user.my_best_times.build()
+    end 
+  end
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
