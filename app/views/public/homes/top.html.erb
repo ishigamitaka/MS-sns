@@ -26,7 +26,6 @@
               <% end %>
             </div>
             <div class="post-info">
-              <h2 class="post-title"><%= post.title %></h2>
               <p class="post-body">
                 <%if post.body.nil? %>
                   <%= post.body %>
@@ -48,9 +47,7 @@
             </div>
             <% if admin_signed_in? %>
               <div class="delete-post">
-                <%= button_to post_path(post.id), method: :delete, class: "btn btn-danger delete-button" do %>
-                  削除する
-                <% end %>
+                <%= link_to "管理者用削除ボタン", post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
               </div>
             <% end %>
           </div>

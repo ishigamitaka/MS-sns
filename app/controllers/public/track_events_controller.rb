@@ -14,10 +14,10 @@ class Public::TrackEventsController < ApplicationController
   end 
   def edit
     @event = TrackEvent.find(params[:id])
-    unless current_user.id == @event.user_id
-      redirect_to root_path
-    end
-  end 
+    if current_user.id != @event.id
+      redirect_to root_path, alert: "アクセス権限がありません。"
+    end 
+  end
   def update
     @event = TrackEvent.find(params[:id])
     if @event.update(track_event_params)

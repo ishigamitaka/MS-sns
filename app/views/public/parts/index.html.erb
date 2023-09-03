@@ -27,7 +27,7 @@
             <% else %>
               <p>削除された投稿者</p>
             <% end %>
-            <% if admin_signed_in? && !pa.user.deleted? %>
+            <% if (admin_signed_in? || pa.user&.deleted?) && !pa.user&.deleted? %>
               <%= button_to part_path(pa.id), method: :delete, class: "btn btn-danger delete-button", data: { confirm: "本当に削除しますか？" } do %>
                 削除する
               <% end %>
