@@ -27,11 +27,11 @@
             </div>
             <div class="post-info">
               <p class="post-body">
-                <%if post.body.nil? %>
-                  <%= post.body %>
-                <% else %>
-                  <<%=safe_join(post.body.split("\n"),tag(:br))%>
-                <%end %>
+                <%#if post.body.nil? %>
+                  <%# post.body %>
+                <%# else %>
+                  <%=safe_join(post.body.split("\n"),tag(:br))%>
+                <%#end %>
               </p>
               <p class="post-date"><%= post.created_at.strftime('%Y/%m/%d/ %H:%M:%S')%></p>
             </div>
