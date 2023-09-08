@@ -20,6 +20,13 @@
  .circuit_index{
    background-image: image-url('checker_flag.jpg');
  }
+ .circuit_show{
+   background-image: image-url('checker_flag.jpg');
+ }
+ /*テーブルの文字背景だけを半透明にしたい*/
+ .table_text-white_bg-secondary{
+  background-color: transparent;
+ }
  .registnew{
    background-image: image-url('pit.jpg');
  }
