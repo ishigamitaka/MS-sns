@@ -1,6 +1,12 @@
 <div class="container registnew">
   <div class="row justify-content-center">
     <div class="col-md-6">
+      <style>
+        .form-group.text-white {
+          background-color: black; /* 背景色を黒に設定 */
+          color: white; /* テキストの色を白に設定 */
+        }
+      </style>
       <h1 class="text-center text-white">会員登録</h1>
 
       <%= form_with model: @user, url: user_registration_path, method: :post do |form| %>
