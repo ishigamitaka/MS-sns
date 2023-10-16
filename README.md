@@ -30,7 +30,7 @@
 <...>
 
 ## 開発環境
-- OS：Windows11　
+- OS：Linux/UNIX
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
