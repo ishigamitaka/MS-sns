@@ -50,30 +50,43 @@
       <% end %>
       
     </div>
-    <div class="col-md-4 text-white">
-      <h2>プロフィール</h2><br>
-        <%if @user.freeprofile.nil? %>
-          <p><%= @user.freeprofile %></p>
-        <% else %>
-          <p><%=safe_join(@user.freeprofile.split("\n"),tag(:br))%></p>
-        <%end %>
-
-      <div class="follow-sidebar text-white">
-        <h3>フォロー</h3>
-        <% @user.follows.each do |follow| %>
-          <p><%= link_to User.find(follow.followed_id).nickname, user_path(follow.followed_id) %></p>
-        <% end %>
+    <div class="col-md-4">
+      <h3 class="card-title text-white">プロフィール</h3>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-text">
+            <% if @user.freeprofile.nil? %>
+              <p><%= @user.freeprofile %></p>
+            <% else %>
+              <p><%= safe_join(@user.freeprofile.split("\n"), tag(:br)) %></p>
+            <% end %>
+          </div>
+        </div>
       </div>
-
-      <div class="follower-sidebar text-white">
-        <h3>フォロワー</h3>
-        <% User.my_followers(@user).each do |follower| %>
-          <%# unless follower == @user %>
-            <p><%= link_to User.find(follower.id).nickname, user_path(follower.id) %></p>
-          <%# end %>
-        <% end %>
+        
+        
+      <h3 class="text-white">フォロー</h3>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-text">
+            <% @user.follows.each do |follow| %>
+              <p><%= link_to User.find(follow.followed_id).nickname, user_path(follow.followed_id) %></p>
+            <% end %>
+          </div>
+        </div>
       </div>
-
+      
+      <h3 class="text-white">フォロワー</h3>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-text">
+            <% User.my_followers(@user).each do |follower| %>
+              <p><%= link_to User.find(follower.id).nickname, user_path(follower.id) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
       <% if current_user && current_user != @user %>
         <% if current_user.following?(@user) %>
           <%= button_to "フォロー解除", unfollow_user_path(@user), method: :post, class: "btn btn-danger" %>
