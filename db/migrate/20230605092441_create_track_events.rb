@@ -14,6 +14,8 @@ class CreateTrackEvents < ActiveRecord::Migration[6.1]
       t.string :payment_method
       t.string :due_date
       t.string :location
+      t.integer :post_id
+      t.text :content
       t.timestamps
     end
   end

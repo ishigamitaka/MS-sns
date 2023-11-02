@@ -9,6 +9,8 @@ class Public::TrackEventsController < ApplicationController
   end 
   def show
     @event = TrackEvent.find(params[:id])
+    @post_comment = PostComment.new
+    @post = Post.find(params[:id])
     #@event.reload
     #byebug
   end 
@@ -55,7 +57,7 @@ class Public::TrackEventsController < ApplicationController
   private
 
   def track_event_params
-    params.require(:track_event).permit(:title, :body, :run_category, :run_date, :price, :number_people, :deadline, :update, :location, :due_date, :payment_method, :contact_address,)
+    params.require(:track_event).permit(:title, :body, :run_category, :run_date, :price, :number_people, :deadline, :update, :location, :due_date, :payment_method, :contact_address, :content, :post_id)
   end
   
   

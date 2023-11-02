@@ -52,6 +52,8 @@
           </table>
         </div>
       </div>
+      
+      
       <div class="col-md-6">
         <div class="text-white">
           <th>詳細</th><br>
@@ -82,6 +84,63 @@
             <%= link_to "編集する", edit_track_event_path(@event), class: "btn btn-primary" %>
           <% end %>
         </div>
+        <div class="col-md-5 offset-2 text-white">
+      <h1>投稿詳細</h1>
+
+      <div class="text-white">
+        <%if @post.body.nil? %>
+          <%= @post.body %>
+        <% else %>
+          <%=safe_join(@post.body.split("\n"),tag(:br))%>
+        <%end %>
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image, size: "160x120" %>
+        <% end %>
+        <p>投稿者：<%= link_to @post.user.nickname, user_path(@post.user_id) %></p>
+        <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+        <% if @post.user == current_user %>
+          <%= link_to "削除", post_path(@post), method: :delete %>
+        <% end %>
+      </div>
+
+      <% if @post.favorited_by?(current_user) %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            ♥<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            ♡<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+    <div class="col-md-4 text-white">
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <%= post_comment.user.nickname %><br>
+          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
+          <%= post_comment.comment %><br>
+          <% if post_comment.user == current_user %><br>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="sidebar">
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <% if user_signed_in? %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% else %>
+            <p>投稿するにはログインが必要です。</p>
+            <%= link_to 'ログイン', new_user_session_path %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
       </div>
     </div>
   </div>
