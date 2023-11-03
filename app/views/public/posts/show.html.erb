@@ -19,19 +19,28 @@
         <% end %>
       </div>
 
-      <% if @post.favorited_by?(current_user) %>
-        <p>
-          <%= link_to post_favorites_path(@post), method: :delete do %>
-            ♥<%= @post.favorites.count %> いいね
-          <% end %>
-        </p>
+      <% if current_user %>
+        <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(@post), method: :delete do %>
+              ♥<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorites_path(@post), method: :post do %>
+              ♡<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
       <% else %>
+        <!-- ログインしていないユーザー向けの処理 -->
         <p>
-          <%= link_to post_favorites_path(@post), method: :post do %>
-            ♡<%= @post.favorites.count %> いいね
-          <% end %>
+          ♡<%= @post.favorites.count %> いいね<br>
+          いいねをするにはログインが必要です。<br> <%= link_to "ログイン", new_user_session_path %> または <%= link_to "新規登録", new_user_registration_path %> をしてください。
         </p>
       <% end %>
+      
     </div>
     <div class="col-md-4 text-white">
       <div>
