@@ -2,13 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="text-center text-white">イベント一覧</h1>
-      
+      <% if current_user %>
         <%= link_to "投稿する", new_track_event_path, class: "btn btn-primary" %>
+      <% end %>
 
       <% @events.each do |te| %>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">タイトル: <%= link_to te.title, track_event_path(te) %></h5>
+            <h5 class="card-title">タイトル: <% if current_user %><%= link_to te.title, track_event_path(te) %><% else %><%= te.title %><% end %></h5>
             <h6 class="card-subtitle mb-2 text-muted">投稿者: <% if te.user.present? %><%= te.user.nickname %><% else %>削除された投稿者<% end %></h6>
             <p class="card-text">走行カテゴリー: <%= te.run_category %></p>
             <p class="card-text">走行日時: <%= te.run_date.strftime('%Y/%m/%d') %></p>
