@@ -80,6 +80,8 @@
                 <%= link_to "編集する", edit_track_event_path(@event), class: "btn btn-primary" %>
               <% end %>
               
+              
+              <!--コメント関係-->
               <div class="text-white">
                 <%if @post.body.nil? %>
                   <%= @post.body %>
@@ -95,6 +97,7 @@
                   <%= link_to "削除", post_path(@post), method: :delete %>
                 <% end %>
                 
+                <!--いいねの表示関係-->
                 <% if @post.favorited_by?(current_user) %>
                   <p>
                     <%= link_to post_favorites_path(@post), method: :delete do %>

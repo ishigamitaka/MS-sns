@@ -8,6 +8,8 @@ class Public::PartsController < ApplicationController
   end 
   def show
     @part = Part.find(params[:id])
+    @post_comment = PostComment.new
+    @post = Post.find(params[:id])
   end 
   def create
     @part = Part.new(part_params)
