@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
+      get :search, on: :collection
     end
     resources :track_events do
       patch 'update_deadline_event', on: :member

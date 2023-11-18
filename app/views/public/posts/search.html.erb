@@ -1,0 +1,42 @@
+<div class="container">
+  <h1 class="text-white"><%= @section_title %></h1>
+  
+  <div class="col-md-4">
+    <% if @posts.any? %>
+      <div class="post_search_results">
+        <% @posts.each do |post| %>
+          <div class="post">
+            <div class="card timeline-post">
+            <div class="card-header post-header">
+              <div class="post-avatar">
+                <% if post.user.present? %>
+                  <%= link_to post_path(post.id), class: "post-author" do %>
+                    <%= post.user.nickname %>
+                  <% end %>
+                <% else %>
+                  <span class="deleted-author">削除された投稿者</span>
+                <% end %>
+              </div>
+              <div class="post-info">
+                <p class="post-body">
+                  <%#if post.body.nil? %>
+                    <%# post.body %>
+                  <%# else %>
+                    <%=safe_join(post.body.split("\n"),tag(:br))%>
+                  <%#end %>
+                </p>
+                <% if post.image.attached? %>
+                  <%= image_tag post.image, class: "post-image-preview", size: "200x160" %>
+                <% end %>
+                <p class="post-date"><%= post.created_at.strftime('%Y/%m/%d/ %H:%M:%S')%></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= will_paginate @posts %>
+    <% else %>
+      <p>No results found.</p>
+    <% end %>
+  </div>
+</div> 

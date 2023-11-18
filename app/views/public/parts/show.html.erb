@@ -90,7 +90,7 @@
             <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
             <%= f.submit "送信する" %>
           <% else %>
-            <p>投稿するにはログインが必要です</p>
+            <p>投稿するにはログインが必要です。</p>
             <%= link_to 'ログイン', new_user_session_path %>
           <% end %>
         <% end %>

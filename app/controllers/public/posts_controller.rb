@@ -11,6 +11,17 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
   end 
+  def search
+    @section_title = "「#{params[:search]}」の検索結果"
+    @posts = if params[:search].present?
+           Post.where('body LIKE ?', "%#{params[:search]}%")
+               .order(created_at: :desc)
+               .paginate(page: params[:page], per_page: 12)
+         else
+           Post.none
+         end
+  end
+  
   def create
     @post = Post.new(post_params)
     @post.user = current_user
