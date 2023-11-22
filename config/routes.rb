@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     end
     resources :track_events do
       patch 'update_deadline_event', on: :member
+      get :search, on: :collection
     end
     
     patch 'track_events/:id/update_deadline_event', to: 'public/track_events#update_deadline_event', as: 'update_deadline_event'

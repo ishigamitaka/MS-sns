@@ -1,20 +1,9 @@
-<div class="container eventindex">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h1 class="text-center text-white">イベント一覧</h1>
-      <% if current_user %>
-        <%= link_to "投稿する", new_track_event_path, class: "btn btn-primary" %>
-      <% end %>
-      <div class="post_search">
-        <%= form_with url: search_track_events_path, method: :get, local: true do |f| %>
-          <%= f.text_field :search, class: 'form-control', placeholder: "キーワード検索"  %>
-          <%= f.button :type => "submit" do %>
-            <i class="fas fa-search"></i>
-          <% end %>
-        <% end %>
-      </div>
-
-      <% @events.each do |te| %>
+<div class="container">
+  <h1 class="text-white"><%= @section_title %></h1>
+  
+  <div class="col-md-4">
+    <% if @events.any? %>
+     <% @events.each do |te| %>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">タイトル: <% if current_user %><%= link_to te.title, track_event_path(te) %><% else %><%= te.title %><% end %></h5>
@@ -38,6 +27,8 @@
           </div>
         </div>
       <% end %>
-    </div>
+    <% else %>
+      <p>No results found.</p>
+    <% end %>
   </div>
-</div>
+</div> 

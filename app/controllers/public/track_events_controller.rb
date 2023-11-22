@@ -53,6 +53,19 @@ class Public::TrackEventsController < ApplicationController
     end
   end
   
+  def search
+    @events = TrackEvent.all
+    @section_title = "「#{params[:search]}」の検索結果"
+    @posts = if params[:search].present?
+           TrackEvent.where('te.run_category LIKE ? OR te.title LIKE OR te.body LIKE',
+              "%#{params[:search]}%")
+               .order(created_at: :desc)
+               .paginate(page: params[:page], per_page: 12)
+         else
+           TrackEvent.none
+         end
+  end
+  
   
   private
 
