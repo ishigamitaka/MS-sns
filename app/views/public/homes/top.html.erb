@@ -22,7 +22,7 @@
       <h1 class="timeline-heading text-white">タイムライン</h1>
       <% @posts.each do |post| %>
         <% next if post.user.nil? || post.user.deleted? %>
-        <div class="card timeline-post">
+        <div class="card timeline-post margin-20px">
           <div class="card-header post-header">
             <div class="post-avatar">
               <% if post.user.present? %>
@@ -38,25 +38,22 @@
                 <%#if post.body.nil? %>
                   <%# post.body %>
                 <%# else %>
+              <p class="post-date"><%= post.created_at.strftime('%Y/%m/%d/ %H:%M:%S')%></p>
                   <%=safe_join(post.body.split("\n"),tag(:br))%>
                 <%#end %>
               </p>
               <% if post.image.attached? %>
                 <%= image_tag post.image, class: "post-image-preview", size: "200x160" %>
               <% end %>
-              <p class="post-date"><%= post.created_at.strftime('%Y/%m/%d/ %H:%M:%S')%></p>
-            </div>
-          </div>
-          
-          <div class="card-footer post-actions">
-            <div class="comment-count">
+              <div class="comment-count">
                 <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
-            </div>
-            <% if admin_signed_in? %>
-              <div class="delete-post">
-                <%= link_to "管理者用削除ボタン", post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
               </div>
-            <% end %>
+              <% if admin_signed_in? %>
+                <div class="delete-post">
+                  <%= link_to "管理者用削除ボタン", post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
         <% end %>
